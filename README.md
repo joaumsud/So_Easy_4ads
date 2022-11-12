@@ -1,2 +1,5 @@
 # So_Easy_4ads
-Repositório do projeto do quarto semestre
+
+## Branch master >> branch para quando o sistema já estiver com a versão rodando;
+
+## Branch Homolog >> Usado para teste, antes de subir para a master.

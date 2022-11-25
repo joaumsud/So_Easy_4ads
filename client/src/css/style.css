@@ -15,7 +15,25 @@
     color: var(--purple-primary);
 }
 
-.form-control:focus {
+.form-control:focus,
+.form-select:focus {
     border-color: var(--gray);
     box-shadow: none;
+}
+
+.btn-purple,
+.btn-purple:hover {
+    background-color: var(--purple-primary);
+    border: none;
+}
+
+.btn-aluno,
+.btn-aluno:hover {
+    text-decoration: none;
+    color: var(--purple-primary);
+}
+
+.form-registros {
+    max-width: 600px;
+    min-width: 350px;
 }

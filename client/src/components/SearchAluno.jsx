@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 
 import SearchBar from "./SearchBar";
-import SearchResults from "./SearchResults";
+import Lightbox from "./Lightbox";
 import AlunoTable from "./AlunoTable";
 
 const SearchAluno = () => {
@@ -25,12 +25,13 @@ const SearchAluno = () => {
                 onSearch={handleSearch}
             />
 
-            <SearchResults
+            <Lightbox
+                title="Resultados"
                 show={showResults}
                 onHide={() => setShowResults(false)}
             >
                 <AlunoTable alunos={results} />
-            </SearchResults>
+            </Lightbox>
         </>
     );
 };

@@ -5,7 +5,7 @@ const login = require('../middleware/Login')
 
 //router.post("/cadastro", UsuariosController.postCadastro)
 
-router.post("/cadastro", login.obrigatorio,login.nivelAdm,UsuariosController.postCadastro)
+router.post("/cadastro", login.obrigatorio, UsuariosController.postCadastro)
 
 router.post('/login', UsuariosController.postLogin)
 

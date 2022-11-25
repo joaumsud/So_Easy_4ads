@@ -7,6 +7,7 @@ exports.postCadastro = (req, res, next) => {
         if (error) {
             return res.status(500).send({ error: error });
         }
+        
         conn.query("SELECT * FROM usu_usuario WHERE usu_email = ?", 
                     [req.body.email], 
                     (error, results) => {
@@ -20,7 +21,7 @@ exports.postCadastro = (req, res, next) => {
                     }
                     conn.query(
                         "INSERT INTO USU_USUARIO(usu_nome,usu_email,usu_senha,usu_nivel_acesso) VALUES(?,?,?,?)",
-                        [req.body.nome,req.body.email, hash,req.body.nivel_de_acesso],
+                        [req.body.nome,req.body.email,hash,req.body.nivel_de_acesso],
                         (error, results) => {
                             conn.release();
                             if (error) {
@@ -62,12 +63,13 @@ exports.postLogin = (req, res, next) => {
                         email: results[0].usu_email
                     }, process.env.JWT_KEY,
                         {
-                            expiresIn: "7d"
+                            expiresIn: "1d"
                         })
 
                     return res.status(200).send({
                         mensagem: "Autenticado com sucesso",
-                        token: token
+                        token: token,
+                        nivel_acesso: results[0].usu_nivel_acesso
                     })
                 }
                 return res.status(401).send({ mensagem: "Falha na autenticação" })

@@ -4,6 +4,7 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser");
 
 const rotaUsuarios = require('./routes/usuarios')
+const rotaOcorrencias = require('./routes/ocorrencias')
 
 app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({ extend: false }));
@@ -23,6 +24,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/usuarios',rotaUsuarios)
+app.use('/ocorrencias',rotaOcorrencias)
 app.use((req, res, next) => {
   const erro = new Error("Não encontrado");
   erro.status = 404;

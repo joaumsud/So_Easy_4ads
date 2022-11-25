@@ -10,12 +10,3 @@ exports.obrigatorio = (req, res, next) => {
         return res.status(401).send({ mensagem: "Falha na autenticação" })
     }
 }
-
-exports.nivelAdm = (req, res, next) => {
-    const nivelAcesso = results[0].usu_nivel_acesso
-    if (nivelAcesso == "1") {
-        next();
-    } else {
-        return res.status(401).send({ mensagem: "Falha ao acessar a página" })
-    }
-}

@@ -1,7 +1,9 @@
+import SearchAluno from "../components/SearchAluno";
+
 const Operador = () => {
     return (
         <>
-            <h1>Operador</h1>
+            <SearchAluno />
         </>
     );
 };

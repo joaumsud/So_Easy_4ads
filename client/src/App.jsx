@@ -1,3 +1,4 @@
+import React from "react";
 import { Routes, Route, Link } from "react-router-dom";
 
 import Admin from "./pages/Admin";
@@ -5,6 +6,8 @@ import Aluno from "./pages/Aluno";
 import Gerente from "./pages/Gerente";
 import Login from "./pages/Login";
 import Operador from "./pages/Operador";
+
+import Header from "./components/Header";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
@@ -22,13 +25,17 @@ const App = () => {
                 <Link to={"/operador"}>operador</Link>
             </ul>
 
-            <Routes>
-                <Route path="/admin" element={<Admin />} />
-                <Route path="/aluno" element={<Aluno />} />
-                <Route path="/gerente" element={<Gerente />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/operador" element={<Operador />} />
-            </Routes>
+            <Header />
+
+            <main className="p-4 p-sm-5">
+                <Routes>
+                    <Route path="/admin" element={<Admin />} />
+                    <Route path="/aluno" element={<Aluno />} />
+                    <Route path="/gerente" element={<Gerente />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/operador" element={<Operador />} />
+                </Routes>
+            </main>
         </>
     );
 };

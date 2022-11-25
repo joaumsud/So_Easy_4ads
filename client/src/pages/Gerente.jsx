@@ -1,7 +1,9 @@
+import SearchAluno from "../components/SearchAluno";
+
 const Gerente = () => {
     return (
         <>
-            <h1>Gerente</h1>
+            <SearchAluno />
         </>
     );
 };

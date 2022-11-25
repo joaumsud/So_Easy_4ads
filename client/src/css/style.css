@@ -2,4 +2,20 @@
 
 * {
     font-family: "Poppins", sans-serif;
+    --purple-primary: #645caa;
+    --purple-secondary: #a084ca;
+    --gray: #ced4da;
+}
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+.text-purple {
+    color: var(--purple-primary);
+}
+
+.form-control:focus {
+    border-color: var(--gray);
+    box-shadow: none;
 }

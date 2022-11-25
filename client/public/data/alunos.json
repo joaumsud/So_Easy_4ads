@@ -1,0 +1,54 @@
+{
+    "alunos": [
+        {
+            "nome": "Bruno",
+            "ra": "1",
+            "turma": "1° A",
+            "ocorrencias": 1,
+            "declaracoes": 1
+        },
+
+        {
+            "nome": "Camila",
+            "ra": "2",
+            "turma": "1° A",
+            "ocorrencias": 2,
+            "declaracoes": 2
+        },
+        {
+            "nome": "Claudemir",
+            "ra": "3",
+            "turma": "1° A",
+            "ocorrencias": 3,
+            "declaracoes": 3
+        },
+        {
+            "nome": "Cristovão",
+            "ra": "4",
+            "turma": "1º A",
+            "ocorrencias": 4,
+            "declaracoes": 4
+        },
+        {
+            "nome": "Gabriel",
+            "ra": "5",
+            "turma": "1º A",
+            "ocorrencias": 5,
+            "declaracoes": 5
+        },
+        {
+            "nome": "João",
+            "ra": "6",
+            "turma": "1º A",
+            "ocorrencias": 6,
+            "declaracoes": 6
+        },
+        {
+            "nome": "Marco",
+            "ra": "7",
+            "turma": "1º A",
+            "ocorrencias": 7,
+            "declaracoes": 7
+        }
+    ]
+}

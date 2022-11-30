@@ -3,7 +3,7 @@ import Form from "react-bootstrap/Form";
 
 const FormOcorrencia = () => {
     return (
-        <div className="p-4 border rounded bg-light form-registros">
+        <div className="p-4 border rounded bg-light w-form">
             <div className="text-center">
                 <i className="bi-file-earmark-text-fill fs-1 text-purple"></i>
             </div>

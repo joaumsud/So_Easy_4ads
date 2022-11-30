@@ -33,7 +33,15 @@
     color: var(--purple-primary);
 }
 
-.form-registros {
+.w-form {
     max-width: 600px;
     min-width: 350px;
+}
+
+.w-fit {
+    width: fit-content;
+}
+
+.pointer {
+    cursor: pointer;
 }

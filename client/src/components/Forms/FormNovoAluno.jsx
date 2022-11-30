@@ -3,9 +3,9 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
-import FormAluno from "./FormAluno";
-import FormResposavel from "./FormResponsavel";
-import FormEndereco from "./FormEndereco";
+import InputsAluno from "../Inputs/InputsAluno";
+import InputsEndereco from "../Inputs/InputsEndereco";
+import InputsResponsavel from "../Inputs/InputsResponsavel";
 
 const initialData = {
     aluno: {
@@ -34,7 +34,6 @@ const FormNovoAluno = () => {
     const [formData, setFormData] = React.useState(initialData);
 
     const handleTyping = (e) => {
-        console.log(e.target.parentElement.parentElement.id);
         setFormData((prevState) => ({
             ...prevState,
             [e.target.parentElement.parentElement.id]: {
@@ -54,22 +53,22 @@ const FormNovoAluno = () => {
         <Form
             className="text-purple"
             onSubmit={handleSubmit}
-            encTcype="multipart/form-data"
+            encType="multipart/form-data"
         >
             <div className="mb-5">
                 <h5 className="mb-4">Dados do aluno</h5>
-                <FormAluno aluno={formData.aluno} onTyping={handleTyping} />
+                <InputsAluno aluno={formData.aluno} onTyping={handleTyping} />
             </div>
             <div className="mb-5">
-                <h5 className="mb-4">Dados do responsavél</h5>
-                <FormResposavel
+                <h5 className="mb-4">Dados do responsável</h5>
+                <InputsResponsavel
                     responsavel={formData.responsavel}
                     onTyping={handleTyping}
                 />
             </div>
             <div className="mb-4">
                 <h5 className="mb-4">Endereço</h5>
-                <FormEndereco
+                <InputsEndereco
                     endereco={formData.endereco}
                     onTyping={handleTyping}
                 />

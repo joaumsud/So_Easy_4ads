@@ -1,10 +1,10 @@
 import React from "react";
 
-import SearchAluno from "../components/SearchAluno";
-import FormOcorrencia from "../components/FormOcorrencia";
-import FormDeclaracao from "../components/FormDeclaracao";
-import FormNovoAluno from "../components/FormNovoAluno";
-import Lightbox from "../components/Lightbox";
+import SearchAluno from "../components/SearchAluno/SearchAluno";
+import FormOcorrencia from "../components/Forms/FormOcorrencia";
+import FormDeclaracao from "../components/Forms/FormDeclaracao";
+import FormNovoAluno from "../components/Forms/FormNovoAluno";
+import Lightbox from "../components/Helpers/Lightbox";
 
 const Gerente = () => {
     const [showFormAluno, setShowFormAluno] = React.useState(false);

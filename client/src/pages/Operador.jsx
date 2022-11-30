@@ -1,4 +1,4 @@
-import SearchAluno from "../components/SearchAluno";
+import SearchAluno from "../components/SearchAluno/SearchAluno";
 
 const Operador = () => {
     return (

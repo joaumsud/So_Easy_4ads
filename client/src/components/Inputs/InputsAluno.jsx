@@ -1,6 +1,6 @@
 import Form from "react-bootstrap/Form";
 
-const FormAluno = ({ aluno, onTyping }) => {
+const InputsAluno = ({ aluno, onTyping }) => {
     return (
         <div id='aluno'>
             <Form.Group className="mb-3">
@@ -43,4 +43,4 @@ const FormAluno = ({ aluno, onTyping }) => {
     );
 };
 
-export default FormAluno;
+export default InputsAluno;

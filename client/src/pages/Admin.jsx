@@ -1,7 +1,7 @@
-import SearchAluno from "../components/SearchAluno";
-import FormUsuario from "../components/FormUsuario";
-import UltimosRegistros from "../components/UltimosRegistros";
-import Usuarios from "../components/Usuarios";
+import SearchAluno from "../components/SearchAluno/SearchAluno";
+import FormUsuario from "../components/Forms/FormUsuario";
+import UltimosRegistros from "../components/InfoSistema/UltimosRegistros";
+import Usuarios from "../components/InfoSistema/Usuarios";
 
 const Admin = () => {
     return (
@@ -11,7 +11,7 @@ const Admin = () => {
                 <div>
                     <FormUsuario />
                 </div>
-                <div>
+                <div className='border p-4 rounded bg-light'>
                     <h2 className="text-purple mb-4">Informações do sistema</h2>
                     <UltimosRegistros />
                     <Usuarios />

@@ -1,6 +1,6 @@
 import Form from "react-bootstrap/Form";
 
-const FormResponsavel = ({ responsavel, onTyping }) => {
+const InputsResponsavel = ({ responsavel, onTyping }) => {
     return (
         <div id="responsavel">
             <Form.Group className="mb-3">
@@ -34,4 +34,4 @@ const FormResponsavel = ({ responsavel, onTyping }) => {
     );
 };
 
-export default FormResponsavel;
+export default InputsResponsavel;

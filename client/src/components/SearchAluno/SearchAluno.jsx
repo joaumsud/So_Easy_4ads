@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 
 import SearchBar from "./SearchBar";
-import Lightbox from "./Lightbox";
+import Lightbox from "../Helpers/Lightbox";
 import AlunoTable from "./AlunoTable";
 
 const SearchAluno = () => {

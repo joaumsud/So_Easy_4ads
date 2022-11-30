@@ -1,6 +1,6 @@
 import Form from "react-bootstrap/Form";
 
-const FormEndereco = ({ endereco, onTyping }) => {
+const InputsEndereco = ({ endereco, onTyping }) => {
     return (
         <div id="endereco">
             <Form.Group className="mb-3">
@@ -69,4 +69,4 @@ const FormEndereco = ({ endereco, onTyping }) => {
     );
 };
 
-export default FormEndereco;
+export default InputsEndereco;

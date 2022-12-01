@@ -86,22 +86,21 @@ exports.postOcorrencia = async (req, res, next) => {
               ?,
               ?);`;
     const result = await mysql.execute(query, [
-      req.body.nome,
-      req.body.data,
+      req.body.resumo,
       req.file.path,
+      req.body.data,
+      req.body.ativa,
+      req.body.aluno_id
     ]);
     const response = {
       mensagem: "Ocorrência inserida com sucesso",
-      produtoCriado: {
-        id_produto: result.id_produto,
-        nome: req.body.nome,
-        preco: req.body.preco,
-        imagem_produto: req.file.path,
-        request: {
-          tipo: "GET",
-          descricao: "Retorna todos os produtos",
-          url: "http://localhost:3000/produtos/",
-        },
+      ocorrenciaCriada: {
+        id_ocorrencia: result.oco_id,
+        resumo: req.body.resumo,
+        path: req.file.path,
+        data: req.body.data,
+        ativa: req.body.ativa,
+        alunoId: req.body.aluno_id
       },
     };
     return res.status(201).send({ response });

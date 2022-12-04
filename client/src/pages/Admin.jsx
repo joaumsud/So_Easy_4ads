@@ -11,7 +11,7 @@ const Admin = () => {
                 <div>
                     <FormUsuario />
                 </div>
-                <div className='border p-4 rounded bg-light'>
+                <div className="border p-4 rounded bg-light">
                     <h2 className="text-purple mb-4">Informações do sistema</h2>
                     <UltimosRegistros />
                     <Usuarios />

@@ -20,8 +20,8 @@ exports.postCadastro = (req, res, next) => {
                         return res.status(500).send({ error: errBcrypt });
                     }
                     conn.query(
-                        "INSERT INTO USU_USUARIO(usu_nome,usu_email,usu_senha,usu_nivel_acesso) VALUES(?,?,?,?)",
-                        [req.body.nome,req.body.email,hash,req.body.nivel_de_acesso],
+                        "INSERT INTO usu_usuario(usu_nome,usu_email,usu_senha,usu_nivel_acesso) VALUES(?,?,?,?)",
+                        [req.body.nome,req.body.email,hash,req.body.nivel_acesso],
                         (error, results) => {
                             conn.release();
                             if (error) {

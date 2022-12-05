@@ -57,7 +57,7 @@ exports.postLogin = (req, res, next) => {
                 if (err) {
                     return res.status(401).send({ mensagem: "Falha na autenticação" })
                 }
-                if (results) {
+                if (result) {
                     const token = jwt.sign({
                         id_usuario: results[0].usu_id,
                         email: results[0].usu_email

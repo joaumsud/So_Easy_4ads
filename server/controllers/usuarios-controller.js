@@ -20,8 +20,8 @@ exports.postCadastro = (req, res, next) => {
                         return res.status(500).send({ error: errBcrypt });
                     }
                     conn.query(
-                        "INSERT INTO usu_usuario(usu_nome,usu_email,usu_senha,usu_nivel_acesso) VALUES(?,?,?,?)",
-                        [req.body.nome,req.body.email,hash,req.body.nivel_acesso],
+                        "INSERT INTO USU_USUARIO(usu_nome,usu_email,usu_senha,usu_nivel_acesso) VALUES(?,?,?,?)",
+                        [req.body.nome,req.body.email,hash,req.body.nivel_de_acesso],
                         (error, results) => {
                             conn.release();
                             if (error) {
@@ -53,7 +53,7 @@ exports.postLogin = (req, res, next) => {
             if (results.length < 1) {
                 return res.status(401).send({ mensagem: "Falha na autenticação" })
             }
-            bcrypt.compare(req.body.senha, results[0].usu_senha, (err, result) => {
+            bcrypt.compare(req.body.senha, results[0].usu_senha, (err, results) => {
                 if (err) {
                     return res.status(401).send({ mensagem: "Falha na autenticação" })
                 }

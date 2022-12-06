@@ -8,5 +8,6 @@ const OcorrenciasController = require('../controllers/ocorrencias-controller')
 router.get('/',login.obrigatorio,OcorrenciasController.getOcorrencias)
 router.get('/:id',login.obrigatorio,OcorrenciasController.getOcorrenciasPorIdAluno)
 router.patch('/:ocoId',login.obrigatorio,OcorrenciasController.updateOcorrencia)
+router.delete('/:ocorrenciaId',login.obrigatorio,OcorrenciasController.deleteOcorrencia)
 
 module.exports = router

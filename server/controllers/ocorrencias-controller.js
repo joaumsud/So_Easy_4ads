@@ -144,3 +144,16 @@ exports.updateOcorrencia = async (req, res, next) => {
     return res.status(500).send({ error: error })
   }
 }
+
+exports.deleteOcorrencia = async(req,res,next) =>{
+  try {
+    const query = `DELETE FROM oco_ocorrencia WHERE oco_id = ?`;
+    await mysql.execute(query,[req.params.ocorrenciaId]);
+    const response = {
+      message: `Ocorrência excluida com sucesso`
+    }
+    return res.status(202).send(response);
+  } catch (error) {
+    return res.status(500).send({ error:error })
+  }
+}

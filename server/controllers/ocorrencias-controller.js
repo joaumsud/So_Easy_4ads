@@ -145,15 +145,36 @@ exports.updateOcorrencia = async (req, res, next) => {
   }
 }
 
-exports.deleteOcorrencia = async(req,res,next) =>{
+exports.deleteOcorrencia = async (req, res, next) => {
   try {
     const query = `DELETE FROM oco_ocorrencia WHERE oco_id = ?`;
-    await mysql.execute(query,[req.params.ocorrenciaId]);
+    await mysql.execute(query, [req.params.ocorrenciaId]);
     const response = {
       message: `Ocorrência excluida com sucesso`
     }
     return res.status(202).send(response);
   } catch (error) {
-    return res.status(500).send({ error:error })
+    return res.status(500).send({ error: error })
+  }
+}
+
+exports.postDocumento = async (req, res, next) => {
+  try {
+    const query = `INSERT INTO DOC_DOCUMENTO (DOC_PATH,OCO_ID) VALUES(?,?)`
+    const result = await mysql.execute(query, [
+      req.params.ocoId,
+      req.file.path
+    ])
+    const response = {
+      message: `Documento inserido com sucesso`,
+      documentoCriado: {
+        ocorrenciaId: parseInt(req.params.ocoId),
+        documentoID: result.insertId,
+        path: req.file.path
+      }
+    }
+    return res.status(201).send(response);
+  } catch (error) {
+    return res.status(500).send({ error: error });
   }
 }

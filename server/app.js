@@ -8,6 +8,7 @@ const rotaOcorrencias = require('./routes/ocorrencias')
 const rotaAlunos = require('./routes/alunos')
 
 app.use(morgan("dev"));
+app.use('/uploads', express.static('uploads'))
 app.use(bodyParser.urlencoded({ extend: false }));
 app.use(bodyParser.json());
 

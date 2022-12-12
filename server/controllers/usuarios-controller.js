@@ -1,79 +1,61 @@
-const mysql = require("../mysql").pool;
+const mysql = require("../mysql");
 const bcrypt = require("bcrypt");
-const jwt = require('jsonwebtoken')
+const jwt = require("jsonwebtoken");
 
-exports.postCadastro = (req, res, next) => {
-    mysql.getConnection((error, conn) => {
-        if (error) {
-            return res.status(500).send({ error: error });
+exports.postCadastro = async (req, res, next) => {
+    try {
+        query =
+            "INSERT INTO usu_usuario(usu_nome,usu_email,usu_senha,usu_nivel_acesso) VALUES (?,?,?,?)";
+        const results = await mysql.execute(query, [
+            req.body.nome,
+            req.body.email,
+            bcrypt.hashSync(req.body.senha, 10),
+            req.body.nivel_acesso,
+        ]);
+        const response = {
+            mensagem: "Usuário criado com sucesso",
+            usuarioCriado: {
+                id_usuario: results.insertId,
+                email: req.body.email,
+            },
+        };
+        return res.status(201).send(response);
+    } catch (error) {
+        return res.status(500).send({ error: error });
+    }
+};
+
+exports.postLogin = async (req, res, next) => {
+    try {
+        const query = `SELECT * FROM usu_usuario WHERE usu_email = ?`;
+        var results = await mysql.execute(query, [req.body.email]);
+        if (results.length < 1) {
+            return res.status(401).send({ mensagem: "Falha na autenticação" });
         }
-        
-        conn.query("SELECT * FROM usu_usuario WHERE usu_email = ?", 
-                    [req.body.email], 
-                    (error, results) => {
-            if (error) { return res.status(500).send({ error: error }) }
-            if (results.length > 0) {
-                res.status(409).send({ mensagem: "Usuario já cadastrado" })
-            } else {
-                bcrypt.hash(req.body.senha, 10, (errBcrypt, hash) => {
-                    if (errBcrypt) {
-                        return res.status(500).send({ error: errBcrypt });
-                    }
-                    conn.query(
-                        "INSERT INTO USU_USUARIO(usu_nome,usu_email,usu_senha,usu_nivel_acesso) VALUES(?,?,?,?)",
-                        [req.body.nome,req.body.email,hash,req.body.nivel_de_acesso],
-                        (error, results) => {
-                            conn.release();
-                            if (error) {
-                                return res.status(500).send({ error: error });
-                            }
-                            const response = {
-                                mensagem: "Usuário criado com sucesso",
-                                usuarioCriado: {
-                                    id_usuario: results.insertId,
-                                    email: req.body.email,
-                                },
-                            };
-                            return res.status(201).send(response);
-                        }
-                    );
-                });
-            }
-        })
-    });
-}
-
-exports.postLogin = (req, res, next) => {
-    mysql.getConnection((error, conn) => {
-        if (error) { return res.status(500).send({ error: error }) }
-        const query = `SELECT * FROM usu_usuario WHERE usu_email = ?`
-        conn.query(query, [req.body.email], (error, results, fields) => {
-            conn.release()
-            if (error) { return res.status(500).send({ error: error }) }
-            if (results.length < 1) {
-                return res.status(401).send({ mensagem: "Falha na autenticação" })
-            }
-            bcrypt.compare(req.body.senha, results[0].usu_senha, (err, result) => {
-                if (err) {
-                    return res.status(401).send({ mensagem: "Falha na autenticação" })
+        const check_pwd = await bcrypt.compareSync(
+            req.body.senha,
+            results[0].usu_senha
+        );
+        if (check_pwd) {
+            const token = jwt.sign(
+                {
+                    userId: results[0].usu_id,
+                    email: results[0].usu_email,
+                    nivel_acesso: results[0].usu_nivel_acesso,
+                },
+                process.env.JWT_KEY,
+                {
+                    expiresIn: "24h",
                 }
-                if (results) {
-                    const token = jwt.sign({
-                        id_usuario: results[0].usu_id,
-                        email: results[0].usu_email
-                    }, process.env.JWT_KEY,
-                        {
-                            expiresIn: "1d"
-                        })
-
-                    return res.status(200).send({
-                        mensagem: "Autenticado com sucesso",
-                        token: token,
-                        nivel_acesso: results[0].usu_nivel_acesso
-                    })
-                }
-                return res.status(401).send({ mensagem: "Falha na autenticação" })
-            })
-        })
-    })
-}
+            );
+            return res.status(200).send({
+                message: "Autenticado com sucesso",
+                token: token,
+                nivel_acesso: results[0].usu_nivel_acesso,
+            });
+        }
+        return res.status(401).send({ message: "Falha na autenticação" });
+    } catch (error) {
+        return res.status(500).send({ message: "Falha na autenticação" });
+    }
+};

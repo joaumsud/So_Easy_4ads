@@ -1,0 +1,58 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+* {
+    font-family: "Poppins", sans-serif;
+    --purple-primary: #645caa;
+    --purple-secondary: #a084ca;
+    --gray: #ced4da;
+}
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+.text-purple {
+    color: var(--purple-primary);
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--gray);
+    box-shadow: none;
+}
+
+.btn-purple,
+.btn-purple:hover,
+.btn-purple:active,
+.btn-purple:focus {
+    background-color: var(--purple-primary);
+    color: white;
+    border: none;
+}
+
+.btn-aluno,
+.btn-aluno:hover {
+    text-decoration: none;
+    color: var(--purple-primary);
+}
+
+.w-form {
+    max-width: 600px;
+    min-width: 350px;
+}
+
+.w-fit {
+    width: fit-content;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.alu-container {
+    max-width: 800px;
+}
+
+.light-gray {
+    color: lightgray;
+}

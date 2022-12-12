@@ -4,7 +4,8 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
 import CustomForm from "./CustomForm";
-import gestaoAlunosAPI from "../api/gestaoAlunosAPI";
+import { useUser } from "../context/UserProvider";
+import GestaoAlunosAPI from "../api/gestaoAlunosAPI";
 
 const initialValues = {
     aluno_id: "",
@@ -16,6 +17,8 @@ const FormRegistro = ({ action }) => {
     const [formData, setFormData] = React.useState(initialValues);
     const [error, setError] = React.useState(false);
     const [success, setSuccess] = React.useState(false);
+    const { user } = useUser();
+    const gestaoAlunosAPI = new GestaoAlunosAPI(user);
 
     const searchAluno = async (searchTerm) => {
         if (searchTerm) {

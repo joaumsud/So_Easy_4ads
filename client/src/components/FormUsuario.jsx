@@ -5,7 +5,8 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
 
-import gestaoAlunosApi from "../api/gestaoAlunosAPI";
+import { useUser } from "../context/UserProvider";
+import GestaoAlunosAPI from "../api/gestaoAlunosAPI";
 
 const initialData = {
     nome: "",
@@ -18,6 +19,8 @@ const FormUsuario = () => {
     const [formData, setFormData] = React.useState(initialData);
     const [error, setError] = React.useState(false);
     const [sucesso, setSucesso] = React.useState(false);
+    const { user } = useUser();
+    const gestaoAlunosAPI = new GestaoAlunosAPI(user);
 
     const onTyping = (e) => {
         setFormData((prevState) => ({
@@ -31,7 +34,7 @@ const FormUsuario = () => {
 
         formData.nivel_acesso = parseInt(formData.nivel_acesso);
         try {
-            const res = await gestaoAlunosApi.novoUsuario(formData);
+            const res = await gestaoAlunosAPI.novoUsuario(formData);
 
             setSucesso(true);
         } catch (e) {

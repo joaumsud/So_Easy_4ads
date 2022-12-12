@@ -1,8 +1,6 @@
 import React from "react";
 
 import FormRegistro from "../components/FormRegistro";
-import FormNovoAluno from "../components/FormNovoAluno";
-import Lightbox from "../components/Lightbox";
 
 const Gerente = () => {
     const [showFormAluno, setShowFormAluno] = React.useState(false);
@@ -12,24 +10,8 @@ const Gerente = () => {
             <div className="d-flex flex-wrap gap-4 align-items-center justify-content-center mt-5">
                 <div className="d-flex gap-4 flex-wrap align-items-center justify-content-center">
                     <FormRegistro action={"ocorrencia"} />
-                    {/* <FormRegistro action={"declaracao"} /> */}
                 </div>
-                {/* <button
-                    className="m-auto text-center text-purple btn btn-link btn-aluno"
-                    onClick={() => setShowFormAluno(true)}
-                >
-                    <i className="bi-plus-circle fs-1"></i>
-                    <p className="text-center fw-bold">Novo aluno</p>
-                </button> */}
             </div>
-
-            {/* <Lightbox
-                title="Cadastrar aluno"
-                show={showFormAluno}
-                onHide={() => setShowFormAluno(false)}
-            >
-                <FormNovoAluno />
-            </Lightbox> */}
         </>
     );
 };

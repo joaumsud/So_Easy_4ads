@@ -8,7 +8,8 @@ import Header from "../components/Header";
 import TabelaRegistros from "../components/TabelaRegistros";
 import Lightbox from "../components/Lightbox";
 
-import gestaoAlunosAPI from "../api/gestaoAlunosAPI";
+import { useUser } from "../context/UserProvider";
+import GestaoAlunosAPI from "../api/gestaoAlunosAPI";
 
 const Aluno = () => {
     const { state } = useLocation();
@@ -20,6 +21,8 @@ const Aluno = () => {
     const [edit, setEdit] = React.useState(false);
     const [ocorrencia, setOcorrencia] = React.useState({});
     const [status, setStatus] = React.useState({ show: false });
+    const { user } = useUser();
+    const gestaoAlunosAPI = new GestaoAlunosAPI(user);
 
     React.useEffect(() => {
         const getOcorrencias = async () => {

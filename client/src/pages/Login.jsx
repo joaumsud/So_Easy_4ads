@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 
 import { useUser } from "../context/UserProvider";
 import CustomForm from "../components/CustomForm";
-import gestaoAlunosAPI from "../api/gestaoAlunosAPI";
+import GestaoAlunosAPI from "../api/gestaoAlunosAPI";
 
 const initialValues = {
     email: "",
@@ -15,6 +15,7 @@ const Login = () => {
     const [formData, setFormData] = React.useState(initialValues);
     const [error, setError] = React.useState(false);
     const { onChangeUser } = useUser();
+    const gestaoAlunosAPI = new GestaoAlunosAPI(null);
 
     const handleChange = (e) => {
         setFormData((prevState) => ({

@@ -43,10 +43,7 @@ exports.postLogin = async (req, res, next) => {
                     email: results[0].usu_email,
                     nivel_acesso: results[0].usu_nivel_acesso,
                 },
-                process.env.JWT_KEY,
-                {
-                    expiresIn: "24h",
-                }
+                process.env.JWT_KEY
             );
             return res.status(200).send({
                 message: "Autenticado com sucesso",

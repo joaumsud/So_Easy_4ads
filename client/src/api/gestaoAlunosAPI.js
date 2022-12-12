@@ -1,14 +1,11 @@
 import axios from "axios";
 
-const user = JSON.parse(localStorage.getItem("user"));
-
 class GestaoAlunosAPI {
     constructor(user) {
         this.axios = axios.create({
             baseURL: "http://localhost:3000",
             headers: {
                 authorization: `Bearer ${user ? user.token : ""}`,
-                // "Content-Type": "multipart/form-data",
             },
         });
     }
@@ -42,4 +39,4 @@ class GestaoAlunosAPI {
     }
 }
 
-export default new GestaoAlunosAPI(user);
+export default GestaoAlunosAPI;

@@ -3,13 +3,16 @@ import Form from "react-bootstrap/Form";
 
 import Lightbox from "./Lightbox";
 import AlunoTable from "./AlunoTable";
-import gestaoAlunoAPI from "../api/gestaoAlunosAPI";
+import { useUser } from "../context/UserProvider";
+import GestaoAlunosAPI from "../api/gestaoAlunosAPI";
 
 const SearchAlunos = () => {
     const [searchTerm, setSearchTerm] = React.useState("");
     const [showResults, setShowResults] = React.useState(false);
     const [results, setResults] = React.useState([]);
     const [loading, setLoading] = React.useState(false);
+    const { user } = useUser();
+    const gestaoAlunosAPI = new GestaoAlunosAPI(user);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -20,7 +23,7 @@ const SearchAlunos = () => {
         setSearchTerm("");
 
         try {
-            const res = await gestaoAlunoAPI.buscarAlunos(searchTerm);
+            const res = await gestaoAlunosAPI.buscarAlunos(searchTerm);
             setResults(res.data.response.alunos);
         } catch (e) {
             console.log(e);
@@ -53,7 +56,10 @@ const SearchAlunos = () => {
             >
                 {loading ? (
                     <div className="d-flex justify-content-center">
-                        <div className="spinner-border text-purple" role="status">
+                        <div
+                            className="spinner-border text-purple"
+                            role="status"
+                        >
                             <span className="visually-hidden">Loading...</span>
                         </div>
                     </div>
